@@ -250,7 +250,7 @@ describe 'Client', '#permissions' do
           ]
         )
 
-        response = client.acl_service.write_relationships(request)
+        response = client.permissions_service.write_relationships(request)
 
         expect(response).to be_a(Authzed::Api::V1::WriteRelationshipsResponse)
         expect(response.written_at.token).not_to be_nil
