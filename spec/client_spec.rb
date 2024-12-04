@@ -254,6 +254,14 @@ describe 'Client', '#permissions' do
 
         expect(response).to be_a(Authzed::Api::V1::WriteRelationshipsResponse)
         expect(response.written_at.token).not_to be_nil
+
+        resp = client.permissions_service.read_relationships(
+          Authzed::Api::V1::ReadRelationshipsRequest.new(
+            consistency: Authzed::Api::V1::Consistency.new(fully_consistent: true),
+            relationship_filter: Authzed::Api::V1::RelationshipFilter.new(resource_type: 'project')
+          )
+        )
+        expect(resp.count).to eq 1
       end
     end
   end
